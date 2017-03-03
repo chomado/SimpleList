@@ -4,7 +4,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:SimpleList"
 	x:Class="SimpleList.SimpleListPage">
-	
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+	</ContentPage.Padding>
 	<StackLayout>
 		<Button Text="データを読み込む" VerticalOptions="Start" />
 		<ListView x:Name="speakerListView" VerticalOptions="FillAndExpand" >
