@@ -8,7 +8,7 @@
 		<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
 	</ContentPage.Padding>
 	<StackLayout>
-		<Button Text="データを読み込む" VerticalOptions="Start" />
+		<Button Text="データを読み込む" VerticalOptions="Start" Clicked="OnClick" />
 		<ListView x:Name="speakerListView" VerticalOptions="FillAndExpand" >
 			<ListView.ItemTemplate>
 				<DataTemplate>
