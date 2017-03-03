@@ -1,11 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:local="clr-namespace:SimpleList"
 	x:Class="SimpleList.SimpleListPage">
-	<Label
-		Text="Welcome to Xamarin Forms!"
-		VerticalOptions="Center"
-		HorizontalOptions="Center" />
+	
+	<StackLayout>
+		<Button Text="データを読み込む" VerticalOptions="Start" />
+		<ListView x:Name="speakerListView" VerticalOptions="FillAndExpand" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ImageCell Text="{Binding Name}"
+                    		Detail="{Binding Title}"
+                    		ImageSource="{Binding Avatar}"/>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
 </ContentPage>
