@@ -129,7 +129,7 @@ namespace SimpleList
 ## 見た目の作成（画面）
 
 `SimpleListPage.xaml` を開きます。これは見た目を定義しているファイルです。    
-XAML (ざむる) とは、Micorosft による、主にUIを書くために用いられるマークアップ言語です。(XMLみたいな)
+XAML (ざむる) とは、Micorosft による、主にUIを書くために用いられるマークアップ言語です。(XMLベースの言語)
 
 `SimpleListPage.xaml`は、最初はこうなっています。
 
