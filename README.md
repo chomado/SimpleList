@@ -56,11 +56,30 @@ JSON を引っ張ってきて、それをリストビューに表示させる、
 
 `Xamarin.Forms` アプリの「新規作成」をしましょう。
 
-`Visual Studio for Mac` での「新規プロジェクト作成」の方法は [こちら](https://blogs.msdn.microsoft.com/chomado/xamarin/tried-creating-an-app-using-visual-studio-for-mac/)から。
-
 * Xamarin.Forms
 * 共通部分は PCL
 * アプリの名前は何でもいい。私は "`SimpleList`"にした。同じにしておくとコピペが楽かも？（`namespace`がアプリ名になるので）
+
+Visual Studio for Windows の場合、
+
+「ファイル」→「新規作成」→「プロジェクト」
+
+![](documents/image/create_new_project.png)
+
+テンプレートの中から Xamarin のものを選びます。    
+「Visual C#」→「Cross Platform」→「Cross Platform App」→（プロジェクト名編集）→「OK」
+
+![](documents/image/create_new_xamarin_project.png)
+
+以下のように選んで「OK」
+
+![](documents/image/create_new_xamarin_forms_project.jpg)
+
+
+
+`Visual Studio for Mac` での「新規プロジェクト作成」の方法は [こちら](https://blogs.msdn.microsoft.com/chomado/xamarin/tried-creating-an-app-using-visual-studio-for-mac/)から。
+
+
 
 ## Speakerクラスを作る(新しいファイル)
 
@@ -150,7 +169,21 @@ XAML (ざむる) とは、Micorosft による、主にUIを書くために用い
 
 ## JSON.NET パッケージを追加
 
-to be written
+JSONの扱いがめっちゃ楽になる超便利パッケージを入れましょう。
+
+C# の場合は NuGet と呼ばれるパッケージマネージャを使います。
+
+ソリューションを右クリックして「ソリューションの NuGet パッケージの管理」をクリック
+
+![](documents/image/add_nuget.jpg)
+
+NuGet パッケージマネージャが開くので、`JSON.NET` (`Newtonsoft.Json`)をクリックし、全てのプロジェクトを選択し「インストール」を押します。
+
+![](documents/image/nuget_package_manager.jpg)
+
+これで JSON.NET が入りました。
+
+（Mac の場合はソリューションでの一括パッケージ管理ができないので、プロジェクトごとにひとつひとつ入れていってください）
 
 ## "データを読み込む"ボタンが押された時の処理（イベント）
 
