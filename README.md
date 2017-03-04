@@ -150,6 +150,11 @@ XAML (ざむる) とは、Micorosft による、主にUIを書くために用い
 この `ContentPage` の中を書き換えて行きましょう。まず `Label` を消して、代わりに次のコードを差し込みます。
 
 ```xml
+<!-- iOSでの上の余白を考慮 -->
+<ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+</ContentPage.Padding>
+<!-- コンテンツ(ボタンとList) -->
 <StackLayout>
     <Button Text="データを読み込む" VerticalOptions="Start" />
     <ListView x:Name="speakerListView" VerticalOptions="FillAndExpand" >
