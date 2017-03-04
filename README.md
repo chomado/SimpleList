@@ -4,6 +4,16 @@ Xamarin ハンズオン用の、簡単なアプリ制作の手順書です。
 
 JSON を引っ張ってきて、それをリストビューに表示させる、簡単なアプリです。
 
+## 開発環境
+
+Windows でも Mac でも良いです。
+
+|OS|OS のバージョン|要インストール済|
+|----|----|----|
+|Windows|Windows 10|Xamarin インストール済みの Visual Studio (2015 Update 3｜2017 RC)|
+|Mac OS X|10.11 ("El Capitan") 以降 |(Xamarin Studio もしくは VS for Mac) と 最新の Xcode |
+
+
 ## 完成形
 
 ![](documents/image/finished.png)
@@ -245,6 +255,19 @@ private async void OnClick(object sender, EventArgs e)
     }
 }
 ```
+
+そして、ボタンが押された時にこの `OnClick` が呼ばれるように、XAML側に Clicked イベント呼び出しを書いておきましょう。
+
+現在こうなっています：    
+```xml
+<Button Text="データを読み込む" VerticalOptions="Start" />
+```
+
+こうしてください：    
+```xml
+<Button Text="データを読み込む" VerticalOptions="Start" Clicked="OnClick" />
+```
+
 
 [参考](https://github.com/chomado/SimpleList/commit/924ae671e78d170cb20a322ad222c2a992ad76a0)
 
