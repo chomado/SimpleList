@@ -109,7 +109,44 @@ namespace SimpleList
 
 ## 見た目の作成（画面）
 
-to be written
+`SimpleListPage.xaml` を開きます。これは見た目を定義しているファイルです。    
+XAML (ざむる) とは、Micorosft による、主にUIを書くために用いられるマークアップ言語です。(XMLみたいな)
+
+`SimpleListPage.xaml`は、最初はこうなっています。
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SimpleList"
+    x:Class="SimpleList.SimpleListPage">
+    <Label
+        Text="Welcome to Xamarin Forms!"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
+</ContentPage>
+```
+
+この `ContentPage` の中を書き換えて行きましょう。まず `Label` を消して、代わりに次のコードを差し込みます。
+
+```xml
+<StackLayout>
+    <Button Text="データを読み込む" VerticalOptions="Start" />
+    <ListView x:Name="speakerListView" VerticalOptions="FillAndExpand" >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell Text="{Binding Name}"
+                    Detail="{Binding Title}"
+                    ImageSource="{Binding Avatar}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</StackLayout>
+```
+
+[参照](https://github.com/chomado/SimpleList/commit/1bcca73fb5158f954164b1738c2a518a0b29af05#diff-38d51864885559ed06aa5de8960947a9)
+
 
 ## JSON.NET パッケージを追加
 
@@ -117,4 +154,60 @@ to be written
 
 ## "データを読み込む"ボタンが押された時の処理（イベント）
 
-to be written
+`SimpleListPage.xaml.cs` を開きます。（`SimpleListPage.xaml` のコードビハインドです。)
+
+最初はこうなっています。
+
+```csharp
+using Xamarin.Forms;
+
+namespace SimpleList
+{
+    public partial class SimpleListPage : ContentPage
+    {
+        public SimpleListPage()
+        {
+            InitializeComponent();
+        }
+    }
+}
+ ```
+
+ここに、「データを読み込む」ボタンが押された時の処理を書きます。
+読み込むボタンが押されたら [こちらのJSON](http://demo4404797.mockable.io/speakers)を引っ張ってきて、よしなに表示させたいですよね。
+
+まず、必要な using 句を追加します。
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using Newtonsoft.Json;
+```
+
+そして、コンストラクタの直後あたりに、次のコードを付け足してください。
+
+```csharp
+// "データを読み込む"ボタンが押された時の処理（イベント）
+private async void OnClick(object sender, EventArgs e)
+{ 
+    // HttpClient が不要になったら解放されるようにしている。(using というのは、解放しなければならないリソースを自動で解放してくれる構文)
+    using (var client = new HttpClient())
+    {
+        var jsonUrl = "http://demo4404797.mockable.io/speakers";
+
+        //サーバーから json を取得します
+        var json = await client.GetStringAsync(jsonUrl);
+
+        //json をデシリアライズします
+        var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
+
+        // ListView に データを設定している　
+        this.speakerListView.ItemsSource = items;
+    }
+}
+```
+
+[参考](https://github.com/chomado/SimpleList/commit/924ae671e78d170cb20a322ad222c2a992ad76a0)
+
+で、「実行」してみてください。完成です
