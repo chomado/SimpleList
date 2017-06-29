@@ -18,7 +18,7 @@ Windows でも Mac でも良いです。
 
 ![](documents/image/finished.png)
 
-使うサンプルJSONは[こちら](http://demo4404797.mockable.io/speakers)です
+使うサンプルJSONは[こちら](http://demo4404797.mockable.io/speakers)です。（本社の Xamarin チームの
 
 ```js
 [
